@@ -1,9 +1,6 @@
 package przemek.spring.petclinic.model;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -12,6 +9,7 @@ import java.util.Set;
 @Setter
 @Getter
 @NoArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "owners")
 public class Owner extends Person {
