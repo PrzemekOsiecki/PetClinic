@@ -1,1 +1,5 @@
 przemek\spring\petclinic\PetClinicApplication.class
+przemek\spring\petclinic\controllers\OwnerController.class
+przemek\spring\petclinic\controllers\VetController.class
+przemek\spring\petclinic\controllers\IndexController.class
+przemek\spring\petclinic\bootstrap\DataLoader.class

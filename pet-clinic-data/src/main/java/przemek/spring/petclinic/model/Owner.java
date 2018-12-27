@@ -10,6 +10,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @EqualsAndHashCode
+@ToString
 @Entity
 @Table(name = "owners")
 public class Owner extends Person {

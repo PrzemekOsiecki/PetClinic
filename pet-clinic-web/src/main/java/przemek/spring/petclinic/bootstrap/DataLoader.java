@@ -1,24 +1,19 @@
 package przemek.spring.petclinic.bootstrap;
 
+import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import przemek.spring.petclinic.model.Owner;
 import przemek.spring.petclinic.model.Vet;
 import przemek.spring.petclinic.service.OwnerService;
 import przemek.spring.petclinic.service.VetService;
-import przemek.spring.petclinic.service.map.OwnerServiceMap;
-import przemek.spring.petclinic.service.map.VetServiceMap;
 
 @Component
+@AllArgsConstructor
 public class DataLoader implements CommandLineRunner {
 
     private final OwnerService ownerService;
     private final VetService vetService;
-
-    public DataLoader() {
-        this.ownerService = new OwnerServiceMap();
-        this.vetService = new VetServiceMap();
-    }
 
     @Override
     public void run(String... args) throws Exception {
@@ -50,7 +45,5 @@ public class DataLoader implements CommandLineRunner {
         vetService.save(vet2);
 
         System.out.println("Data loaded ");
-
-
     }
 }

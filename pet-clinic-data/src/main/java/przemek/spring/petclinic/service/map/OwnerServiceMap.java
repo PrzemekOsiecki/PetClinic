@@ -1,12 +1,13 @@
 package przemek.spring.petclinic.service.map;
 
+import org.springframework.stereotype.Service;
 import przemek.spring.petclinic.model.Owner;
 import przemek.spring.petclinic.service.OwnerService;
 
 import java.util.Set;
 
+@Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService<Owner, Long> {
-
 
     @Override
     public Set<Owner> findAll() {
