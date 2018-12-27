@@ -9,7 +9,6 @@ import java.util.Set;
 @Setter
 @Getter
 @NoArgsConstructor
-@EqualsAndHashCode
 @ToString
 @Entity
 @Table(name = "owners")
