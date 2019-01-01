@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymleaf.org">
+<html xmlns:th="http://www.thymleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
 <head lang="en">
     <meta charset="UTF-8">
     <title>Owners Page</title>
 </head>
 <body>
 
-<h1 th:text="'List of Owners'"></h1>
+<h2 th:text="'List of Owners'"></h2>
 
-<table>
+<table class="table table-striped">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th >Id</th>
+            <th >First Name</th>
+            <th >Last Name</th>
         </tr>
     </thead>
     <tbody>
