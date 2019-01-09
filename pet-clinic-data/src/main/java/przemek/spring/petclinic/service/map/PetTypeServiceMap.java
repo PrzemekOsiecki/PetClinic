@@ -7,7 +7,7 @@ import przemek.spring.petclinic.service.CrudService;
 import java.util.Set;
 
 @Service
-public class PetTypeMapService extends AbstractMapService<PetType, Long> implements CrudService<PetType, Long> {
+public class PetTypeServiceMap extends AbstractMapService<PetType, Long> implements CrudService<PetType, Long> {
 
     @Override
     public Set<PetType> findAll() {
