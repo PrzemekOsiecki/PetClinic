@@ -1,13 +1,23 @@
 package przemek.spring.petclinic.service.map;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import przemek.spring.petclinic.model.Owner;
+import przemek.spring.petclinic.model.Pet;
+import przemek.spring.petclinic.model.PetType;
 import przemek.spring.petclinic.service.OwnerService;
+import przemek.spring.petclinic.service.PetService;
+import przemek.spring.petclinic.service.PetTypeService;
 
+import java.util.Optional;
 import java.util.Set;
 
 @Service
+@AllArgsConstructor
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService<Owner, Long> {
+
+    private final PetService petService;
+    private final PetTypeService petTypeService;
 
     @Override
     public Set<Owner> findAll() {
@@ -26,6 +36,24 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
 
     @Override
     public Owner save(Owner owner) {
+        if(owner != null) {
+            Optional.ofNullable(owner.getPets()).ifPresent(pets -> {
+                pets.forEach(pet -> {
+                    Optional<PetType> petType = Optional.ofNullable(pet.getPetType());
+                        petType.ifPresent(existingPetType -> {
+                            if(existingPetType.getId() == null) {
+                                pet.setPetType(petTypeService.save(existingPetType));
+                            }
+                        });
+                    petType.orElseThrow(() -> new RuntimeException("PetType is required"));
+
+                    if(pet.getId() == null) {
+                        Pet savedPet = petService.save(pet);
+                        pet.setId(savedPet.getId());
+                    }
+                });
+            });
+        }
         return super.save(owner);
     }
 
