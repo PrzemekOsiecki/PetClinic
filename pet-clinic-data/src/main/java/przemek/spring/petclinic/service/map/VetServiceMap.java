@@ -1,13 +1,19 @@
 package przemek.spring.petclinic.service.map;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import przemek.spring.petclinic.model.Speciality;
 import przemek.spring.petclinic.model.Vet;
+import przemek.spring.petclinic.service.SpecialitiesService;
 import przemek.spring.petclinic.service.VetService;
 
 import java.util.Set;
 
+@AllArgsConstructor
 @Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService<Vet, Long> {
+
+    private final SpecialitiesService specialitiesService;
 
     @Override
     public Set<Vet> findAll() {
@@ -20,13 +26,20 @@ public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetS
     }
 
     @Override
-    public void delete(Vet Vet) {
-        super.delete(Vet);
+    public void delete(Vet vet) {
+        super.delete(vet);
     }
 
     @Override
-    public Vet save(Vet Vet) {
-        return super.save(Vet);
+    public Vet save(Vet vet) {
+        if (vet.getSpecialities().size() > 0)
+            vet.getSpecialities().forEach(speciality -> {
+                if (speciality.getId() == null) {
+                    Speciality savedSpeciality = specialitiesService.save(speciality);
+                    speciality.setId(savedSpeciality.getId());
+                }
+            });
+        return super.save(vet);
     }
 
     @Override
