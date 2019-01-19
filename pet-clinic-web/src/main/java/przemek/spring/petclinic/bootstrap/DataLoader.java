@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import przemek.spring.petclinic.model.*;
-import przemek.spring.petclinic.service.OwnerService;
-import przemek.spring.petclinic.service.PetTypeService;
-import przemek.spring.petclinic.service.SpecialitiesService;
-import przemek.spring.petclinic.service.VetService;
+import przemek.spring.petclinic.service.*;
 
 import java.time.LocalDate;
 
@@ -18,7 +15,8 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
-    private final SpecialitiesService specialitiesService;
+    private final VetSpecialitiesService vetSpecialitiesService;
+    private final VisitService visitService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -40,15 +38,15 @@ public class DataLoader implements CommandLineRunner {
 
         Speciality radiology = new Speciality();
         radiology.setDescription("Radiology");
-        Speciality savedRadiology = specialitiesService.save(radiology);
+        Speciality savedRadiology = vetSpecialitiesService.save(radiology);
 
         Speciality surgery = new Speciality();
         surgery.setDescription("Surgery");
-        Speciality savedSurgery = specialitiesService.save(surgery);
+        Speciality savedSurgery = vetSpecialitiesService.save(surgery);
 
         Speciality dentistry = new Speciality();
         dentistry.setDescription("Dentistry");
-        Speciality savedDentistry = specialitiesService.save(dentistry);
+        Speciality savedDentistry = vetSpecialitiesService.save(dentistry);
 
         Owner owner = new Owner();
         owner.setFirstName("John");
@@ -83,6 +81,13 @@ public class DataLoader implements CommandLineRunner {
         owner2.getPets().add(johnyPet);
 
         ownerService.save(owner2);
+
+        Visit johnPetVisit = new Visit();
+        johnPetVisit.setPet(johnPet);
+        johnPetVisit.setDate(LocalDate.now());
+        johnPetVisit.setDescription("Sneeze dog");
+
+        visitService.save(johnPetVisit);
 
         Vet vet1 = new Vet();
         vet1.setFirstName("Sally");
