@@ -1,6 +1,7 @@
 package przemek.spring.petclinic.service.map;
 
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import przemek.spring.petclinic.model.Speciality;
 import przemek.spring.petclinic.model.Vet;
@@ -11,6 +12,7 @@ import java.util.Set;
 
 @AllArgsConstructor
 @Service
+@Profile({"default", "map"})
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService<Vet, Long> {
 
     private final VetSpecialitiesService vetSpecialitiesService;

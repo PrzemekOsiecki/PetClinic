@@ -1,5 +1,6 @@
 package przemek.spring.petclinic.service.map;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import przemek.spring.petclinic.model.Speciality;
 import przemek.spring.petclinic.service.VetSpecialitiesService;
@@ -7,6 +8,7 @@ import przemek.spring.petclinic.service.VetSpecialitiesService;
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"})
 public class SpecialitiesServiceMap extends AbstractMapService<Speciality, Long> implements VetSpecialitiesService {
 
     @Override

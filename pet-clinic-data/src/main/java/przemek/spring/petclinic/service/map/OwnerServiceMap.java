@@ -1,6 +1,7 @@
 package przemek.spring.petclinic.service.map;
 
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import przemek.spring.petclinic.model.Owner;
 import przemek.spring.petclinic.model.Pet;
@@ -12,8 +13,9 @@ import przemek.spring.petclinic.service.PetTypeService;
 import java.util.Optional;
 import java.util.Set;
 
-@Service
 @AllArgsConstructor
+@Service
+@Profile({"default", "map"})
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService<Owner, Long> {
 
     private final PetService petService;
