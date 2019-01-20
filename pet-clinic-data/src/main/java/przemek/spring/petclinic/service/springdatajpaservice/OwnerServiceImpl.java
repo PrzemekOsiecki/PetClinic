@@ -5,8 +5,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import przemek.spring.petclinic.model.Owner;
 import przemek.spring.petclinic.repository.OwnerRepository;
-import przemek.spring.petclinic.repository.PetRepository;
-import przemek.spring.petclinic.repository.PetTypeRepository;
 import przemek.spring.petclinic.service.OwnerService;
 
 import java.util.HashSet;
@@ -18,8 +16,6 @@ import java.util.Set;
 public class OwnerServiceImpl implements OwnerService<Owner, Long> {
 
     private final OwnerRepository ownerRepository;
-    private final PetRepository petRepository;
-    private final PetTypeRepository petTypeRepository;
 
     @Override
     public Owner findByLastName(String lastName) {
