@@ -19,7 +19,7 @@ public class OwnerServiceImpl implements OwnerService<Owner, Long> {
 
     @Override
     public Owner findByLastName(String lastName) {
-        return ownerRepository.findByLastName(lastName);
+        return ownerRepository.findByLastName(lastName).orElse(null);
     }
 
     @Override
