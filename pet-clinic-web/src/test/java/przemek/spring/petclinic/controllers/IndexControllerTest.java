@@ -22,7 +22,7 @@ class IndexControllerTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"", "/", "index", "index.html"})
+    @ValueSource(strings = {"", "/", "/index.html"})
     void shouldReturnIndexPage(String path) throws Exception {
         mockMvc.perform(get(path))
                 .andExpect(status().isOk())
