@@ -8,6 +8,7 @@ import przemek.spring.petclinic.repository.OwnerRepository;
 import przemek.spring.petclinic.service.OwnerService;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -20,6 +21,16 @@ public class OwnerServiceImpl implements OwnerService<Owner, Long> {
     @Override
     public Owner findByLastName(String lastName) {
         return ownerRepository.findByLastName(lastName).orElse(null);
+    }
+
+    @Override
+    public List<Owner> findAllByLastName(String lastName) {
+        return ownerRepository.findAllByLastNameLike(lastName);
+    }
+
+    @Override
+    public List<Owner> findAllByLastNameLike(String lastName) {
+        return ownerRepository.findAllByLastNameLike("%" + lastName + "%");
     }
 
     @Override
